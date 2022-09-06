@@ -1,3 +1,8 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get "show" , action: :show , controller: :books
+  post "add_book" , action: :create , controller: :books
+        # post 'add_user', action: :addUser, controller: :users
+  #put "change" , action: :update , controller: :books
+  
+  delete "delete" , action: :delete , controller: :books
 end
