@@ -6,4 +6,6 @@ class Book
     field :desc, type: String
     field :price, type: Numeric
 
+    validates :Title , :price , presence: true
+    
 end

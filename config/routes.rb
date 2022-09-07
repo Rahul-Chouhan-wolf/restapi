@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   
   delete "delete" , action: :delete , controller: :books
 
+  resource :user
+  
 end
