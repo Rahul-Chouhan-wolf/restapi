@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
     skip_before_action :verify_authenticity_token
 
-    before_action :user_id , only: [:update , :destroy , :index]
+    before_action :user_id , only: [:update , :destroy ]
 
     def index
+        @user_data = User.find(params[:id])
         if@user_data
             render json: @user , status: :ok
         else
@@ -11,12 +12,22 @@ class UsersController < ApplicationController
         end
     end
 
-    def show
-        @user=User.all
+    def show_all
+        @user= User.all
         if@user
+            render json: @user
+        else
+            render json: {msg:"The database is empty."}
+        end
+    end
+
+    def show
+        @user=User.page params[:page]
+        @check=@user.empty?
+        if @check==false
             render json: @user , status: :ok
         else
-            render json: {msg:"The database is empty."} 
+            render json: {msg:"The database was only upto this point."}
         end
     end
 
